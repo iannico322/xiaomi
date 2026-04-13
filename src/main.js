@@ -364,7 +364,7 @@ function updateScene() {
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
     scrollProgress  = maxScroll > 0 ? Math.max(0, Math.min(1, window.scrollY / maxScroll)) : 0;
 
-    const returnThreshold = 0.9;
+    const returnThreshold = 0.95;
 
     if (scrollProgress < returnThreshold) {
         const memoryProgress = scrollProgress / returnThreshold;
@@ -375,12 +375,14 @@ function updateScene() {
         targetRotationY = currentSpinRotation + (initialRotationY - currentSpinRotation) * returnProgress;
     }
 
-    // Continuous float position through groups (0 → N-1)
-    // Remapped so scrollProgress=returnThreshold lands exactly on the last group,
-    // ensuring every group including April 2026 can reach full opacity.
-    const memProgress  = Math.min(scrollProgress / returnThreshold, 1);
-    const floatIndex   = memProgress * (memoriesData.length - 1);
-    const nearestIndex = Math.round(floatIndex - 0.2); // bias slightly so intro lingers
+    // The page has 1 hero + N memory sections + 1 final = N+2 sections total.
+    // Each section ≈ 1/(N+1) of the scroll range, so memory section k is centered
+    // at scrollProgress = (k+1)/(N+1).  This formula inverts that mapping exactly:
+    //   floatIndex = scrollProgress * (N+1) - 1
+    // giving 0 when Intro is centered and N-1 when the last month is centered.
+    const N = memoriesData.length;
+    const floatIndex   = Math.max(0, Math.min(N - 1, scrollProgress * (N + 1) - 1));
+    const nearestIndex = Math.round(floatIndex);
 
     if (scrollProgress >= returnThreshold) {
         for (let i = 0; i < memoryGroups.length; i++) {
