@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Happy Anniversary Joana Etulle">
+    <title>Happy Anniversary Love</title>
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="shortcut icon" href="./icon.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Outfit:wght@300;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+</head>
+<body style="overflow: hidden;">
+    <div id="intro-overlay">
+        <div class="intro-content">
+            <div class="pulse-heart" id="start-button">❤️</div>
+            <p class="intro-hint">Click My Heart</p>
+        </div>
+    </div>
+
+    <div id="intro-video-container" class="hidden-fade">
+        <video id="intro-video-player" playsinline></video>
+        <button id="skip-intro">Skip Intro</button>
+    </div>
+
+    <audio id="anniversary-music" src="./src/IV OF SPADES - Kabisado (Official Lyric Video).mp3" loop></audio>
+    <div id="loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <div id="canvas-container"></div>
+
+    <main>
+        <section class="hero-section" id="hero">
+            <div class="anniversary-banner">
+                <span class="sub-line">April 13, 2026</span>
+                <h1>Happy Anniversary Love</h1>
+                <p>One year of beautiful memories, and many more to come.</p>
+                <div class="scroll-indicator">Scroll down to see our journey</div>
+            </div>
+        </section>
+
+        <!-- Memory Sections will be dynamically loaded here -->
+        <div id="memory-sections-container"></div>
+
+        <section class=" hero-section" id="hero">
+            <div class=" anniversary-banner">
+                <h1 >To my dearest Joana Etulle,</h1>
+                <p>My Love, words can't describe how much these past 12 months have meant to me. You are my light, my peace, and my favorite adventure. Happy Anniversary!</p>
+                <div class="sign-off">With all my love, forever.</div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script type="module" src="src/main.js"></script>
+</body>
+</html>
